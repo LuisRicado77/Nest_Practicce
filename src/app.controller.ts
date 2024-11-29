@@ -1,5 +1,7 @@
-import { Controller, Get } from '@nestjs/common';
+/* eslint-disable prettier/prettier */
+import { Body, Controller, Get ,Post} from '@nestjs/common';
 import { AppService } from './app.service';
+import { userDto } from './dto/user.dto';
 
 @Controller()
 export class AppController {
@@ -8,5 +10,11 @@ export class AppController {
   @Get()
   getHello(): string {
     return this.appService.getHello();
+  }
+
+  @Post()
+  postHello(@Body() data:userDto){
+    console.log(data)
+    return "hello from post"
   }
 }
