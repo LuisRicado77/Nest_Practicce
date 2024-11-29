@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsNumber, IsString } from "class-validator";
-import { ICategory, ICategoryCreate } from "src/interface/ICategory";
-import { IEventCreate } from "src/interface/IEvent";
+import { ICategory, ICategoryCreate } from "src/modules/categorys/interface/ICategory";
+import { IEventCreate } from "src/modules/events/interface/IEvent";
 
 export class CategoryDto implements ICategoryCreate{
     @IsNumber()
