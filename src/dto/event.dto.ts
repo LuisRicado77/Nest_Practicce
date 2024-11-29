@@ -1,6 +1,7 @@
 import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IEventCreate } from "src/interface/IEvent";
 
-export class EventDto {
+export class EventDto implements IEventCreate {
     @IsNumber()
     @IsNotEmpty()
     id: number;

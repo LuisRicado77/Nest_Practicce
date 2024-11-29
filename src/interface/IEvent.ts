@@ -10,3 +10,5 @@ export interface IEvent {
 }
 
 export interface IEventCreate extends Omit<IEvent,'id,organizer_id'>{}
+
+export interface IEventUpdate extends Partial<IEventCreate>{}

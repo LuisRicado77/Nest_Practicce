@@ -1,6 +1,7 @@
 import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IUserCreate } from "src/interface/IUser";
 
-export class UserDto {
+export class UserDto implements IUserCreate{
     @IsNumber()
     @IsNotEmpty()
     id: number;

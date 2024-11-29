@@ -1,6 +1,7 @@
 import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IComment, ICommentCreate } from "src/interface/IComment";
 
-export class EventDto {
+export class CommentDto  implements ICommentCreate{
     @IsNumber()
     @IsNotEmpty()
     id: number;

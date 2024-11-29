@@ -8,3 +8,5 @@ export interface ICategory {
 }
 
 export interface  ICategoryCreate extends Omit<ICategory,'id'>{}
+
+export interface ICategoryUpdate extends Partial<ICategoryCreate>{}
