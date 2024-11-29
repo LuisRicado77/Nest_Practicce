@@ -1,7 +1,7 @@
 import { Controller, Get, Post,Body, Patch, Param, Delete } from '@nestjs/common';
 import { AppService } from './app.service';
-import { UserDto } from './dto/user.dto';
-import { UpdateUserDto } from './dto/user-update.dto';
+import { UserDto } from './modules/users/dto/user.dto';
+import { UpdateUserDto } from './modules/users/dto/user-update.dto';
 
 @Controller()
 export class AppController {
