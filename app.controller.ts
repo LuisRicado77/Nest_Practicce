@@ -1,32 +1,27 @@
-import { Controller, Get, Post,Body, Patch, Param, Delete } from '@nestjs/common';
+import { Test, TestingModule } from '@nestjs/testing';
+
 import { AppService } from './app.service';
-import { UserDto } from 'src/modules/users/dto/user.dto';
-import { UpdateUserDto } from 'src/modules/users/dto/user-update.dto';
+import { AppController } from './src/app.controller';
 
-@Controller()
-export class AppController {
-  constructor(private readonly appService: AppService) {}
+describe('AppController', () => {
 
-  @Get()
-  getUser() {
-    return this.appService.getUsers();
-  }
+  let appController: AppController;
 
-  @Post()
-  postH(@Body() data:UserDto){
-    console.log(data);
-    this.appService.createUser(data);
-    return 'SAVED WITH SUCCESS ';
+  beforeEach(async () => {
+    const app: TestingModule = await Test.createTestingModule({
+      controllers: [AppController],
+      providers: [AppService],
+    }).compile();
 
-  }
+    appController = app.get<AppController>(AppController);
+  });
 
-  @Patch('/:id')
-  updateUser(@Param('id')id: string, @Body() updateUser: UpdateUserDto){
-    return this.appService.updateUser(id, updateUser);
-  }
 
-  @Delete('/:id')
-  deleteUser(@Param('id') id:string){
-    return this.appService.deleteUser(id);
-  }
-}
+  describe('root', () => {
+    it('should return "Hello World!"', () => {
+      // ASSERT
+      const users = appController.getUser();
+      expect(users).toBeDefined();
+    });
+  });
+});

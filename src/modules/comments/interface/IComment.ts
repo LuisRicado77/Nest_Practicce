@@ -8,6 +8,6 @@ export interface IComment {
 
 }
 
-export interface  ICommentCreate extends Omit<IComment,'id,user_id,event_id'>{}
+export interface  ICommentCreate extends Omit<IComment,'id'>{}
 
 export interface ICommentUpdate extends Partial<ICommentCreate>{}
