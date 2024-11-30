@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prettier/prettier */
 
 import {
@@ -36,15 +37,15 @@ export class CategoryController {
   }
 
   @Patch('/:id')
-  updatecategory(
+  updateCategory(
     @Param('id') id: number,
-    @Body() updatecategory: UpCategoryDto,
+    @Body() updateCategory: UpCategoryDto,
   ) {
-    return this.categoryService.updateCategory(String(id), UpCategoryDto);
+    return this.categoryService.updateCategory((id), updateCategory);
   }
 
   @Delete('/:id')
   deleteEvent(@Param('id') id: number) {
-    return this.categoryService.deleteCategory(String(id));
+    return this.categoryService.deleteCategory((id));
   }
 }

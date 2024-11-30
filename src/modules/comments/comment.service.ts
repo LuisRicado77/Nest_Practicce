@@ -5,17 +5,18 @@ import {
   NotFoundException,
   RequestTimeoutException,
   UnprocessableEntityException,
-} from '@nestjs/common';
-import { IComment, ICommentCreate, ICommentUpdate } from './interface/IComment';
-import { v4 } from 'uuid';
-import { Repository } from 'typeorm';
-import { Comment } from './comment.entity';
+} from "@nestjs/common";
+import { IComment, ICommentCreate, ICommentUpdate } from "./interface/IComment";
+import { Repository } from "typeorm";
+import { Comment } from "./comment.entity";
+import { InjectRepository } from "@nestjs/typeorm";
 
 @Injectable()
 export class CommentService {
   private comments: IComment[] = [];
 
-  constructor(private readonly commentRepository: Repository<Comment>) {}
+  constructor(
+    @InjectRepository(Comment) private readonly commentRepository: Repository<Comment>) {}
 
   async getComments() {
     let comments: IComment[] | undefined;

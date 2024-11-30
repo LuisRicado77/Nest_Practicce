@@ -10,8 +10,6 @@ export class User implements IUser {
   @Column()
   name: string;
 
-  @Column()
-  lastName: string;
 
   @Column()
   email: string;

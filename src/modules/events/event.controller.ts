@@ -13,7 +13,7 @@ import {
 import { EventService } from './event.service';
 import { EventDto } from './dto/event.dto';
 import { UpdateEventDto } from './dto/event-update.dto';
-@Controller('event')
+@Controller('events')
 export class EventController {
   constructor(private readonly eventService: EventService) {}
 

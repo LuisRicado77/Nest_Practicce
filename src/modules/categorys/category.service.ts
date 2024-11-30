@@ -12,12 +12,16 @@ import {
   ICategoryUpdate,
 } from "./interface/ICategory";
 import { v4 } from 'uuid';
+import { Repository } from "typeorm";
+import { Category } from "./category.entity";
+import { InjectRepository } from "@nestjs/typeorm";
 
 @Injectable()
 export class CategoryService {
   private categorys: ICategory[] = [];
 
-  constructor(private readonly categoryRepository) {}
+  constructor(
+    @InjectRepository(Category) private readonly categoryRepository: Repository<Category>) {}
 
   async getCategorys() {
     let categorys: ICategory[] | undefined;
@@ -67,7 +71,7 @@ export class CategoryService {
     }
   }
 
-  async updateCategory(id: string, categoryUpdate: ICategoryUpdate) {
+  async updateCategory(id: number, categoryUpdate: ICategoryUpdate) {
     let category: ICategory | undefined;
 
     try {
@@ -96,7 +100,7 @@ export class CategoryService {
     return true;
   }
 
-  async deleteCategory(id: string) {
+  async deleteCategory(id: number) {
     this.categorys = this.categorys.filter((category) => {
       if (category.id != Number(id)) return category;
     });
