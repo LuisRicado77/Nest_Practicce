@@ -1,5 +1,6 @@
-import { IUser } from "src/interfaces/IUser";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+/* eslint-disable prettier/prettier */
+import { IUser } from './interface/IUser';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class User implements IUser {
@@ -13,7 +14,5 @@ export class User implements IUser {
   lastName: string;
 
   @Column()
-  age: number;
-
- 
+  email: string;
 }

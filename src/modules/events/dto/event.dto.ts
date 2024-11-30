@@ -1,29 +1,27 @@
-import { IsNotEmpty, IsNumber, IsString } from "";
-import { IEventCreate } from "../interface/IEvent";
+import { IsNotEmpty, IsNumber, IsString } from '';
+import { IEventCreate } from '../interface/IEvent';
 
 export class EventDto implements IEventCreate {
-    @IsNumber()
-    @IsNotEmpty()
-    id: number;
+  @IsNumber()
+  @IsNotEmpty()
+  id: number;
 
-    @IsString()
-    @IsNotEmpty()
-    title: string;
-    
-    @IsString()
-    @IsNotEmpty()
-    description: string;
+  @IsString()
+  @IsNotEmpty()
+  title: string;
 
-    @IsString()
-    @IsNotEmpty()
-    date: string;
+  @IsString()
+  @IsNotEmpty()
+  description: string;
 
-    @IsString()
-    @IsNotEmpty()
-    location: string;
+  @IsString()
+  @IsNotEmpty()
+  date: string;
 
-    @IsNumber()
-    organizer_id: string;
-     
+  @IsString()
+  @IsNotEmpty()
+  location: string;
 
+  @IsNumber()
+  organizer_id: string;
 }

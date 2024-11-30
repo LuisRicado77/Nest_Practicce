@@ -17,14 +17,14 @@ import { Delete } from '@nestjs/common';
 @Injectable()
 export class UserService {
   private users: IUser[] = [];
-  
+
   constructor(
     @InjectRepository(User) private readonly userRepository: Repository<User>,
   ) {}
   async getUsers() {
-    let users : IUser[]| undefined;
+    let users: IUser[] | undefined;
     try {
-      users= await this.userRepository.find();
+      users = await this.userRepository.find();
     } catch (error) {
       // Ya me ofrece errores
       throw new RequestTimeoutException('Error at querying the database', {
@@ -60,7 +60,6 @@ export class UserService {
     return user;
   }
 
-
   async createUser(user: IUserCreate) {
     try {
       const newUser = this.userRepository.create(user);
@@ -71,8 +70,6 @@ export class UserService {
       });
     }
   }
-
-
 
   async updateUser(id: number, userUpdate: UpdateUserDto) {
     let user: IUser | undefined;
@@ -91,7 +88,6 @@ export class UserService {
 
     user.email = userUpdate?.email ?? user.email;
     user.name = userUpdate?.name ?? user.name;
-    
 
     try {
       await this.userRepository.save(user);
@@ -100,20 +96,19 @@ export class UserService {
         description: 'Error at updating user',
       });
     }
-    return true
+    return true;
   }
 
- async deleteUser(id: number) {
-    try{
+  async deleteUser(id: number) {
+    try {
       const user = await this.userRepository.findOneBy({ id });
-      if(!user){
-        throw new Error('No found it')
+      if (!user) {
+        throw new Error('No found it');
       }
-      this.userRepository.delete(user)
+      this.userRepository.delete(user);
       return true;
-    }catch(error){
-      throw new Error('No eliminated')
+    } catch (error) {
+      throw new Error('No eliminated');
     }
-    
   }
 }

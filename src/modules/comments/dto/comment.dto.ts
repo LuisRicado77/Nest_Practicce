@@ -1,22 +1,18 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
-import { IComment, ICommentCreate } from "../interface/IComment";
- 
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IComment, ICommentCreate } from '../interface/IComment';
 
-export class CommentDto  implements ICommentCreate{
-    @IsNumber()
-    @IsNotEmpty()
-    id: number;
+export class CommentDto implements ICommentCreate {
+  @IsNumber()
+  @IsNotEmpty()
+  id: number;
 
-    @IsString()
-    @IsNotEmpty()
-    content: string;
-    
-    @IsNumber()
-    user_id: string;
+  @IsString()
+  @IsNotEmpty()
+  content: string;
 
-    @IsNumber()
-    event_id: string;
+  @IsNumber()
+  user_id: string;
 
-   
-
+  @IsNumber()
+  event_id: string;
 }

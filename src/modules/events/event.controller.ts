@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 
 import {
   Body,
@@ -41,5 +42,5 @@ export class EventController {
   @Delete('/:id')
   deleteEvent(@Param('id') id: number) {
     return this.eventService.deleteEvent(String(id));
-
+  }
 }

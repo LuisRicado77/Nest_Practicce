@@ -1,12 +1,21 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
+/* eslint-disable prettier/prettier */
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserDto } from './dto/user.dto';
 import { UpdateUserDto } from './dto/user-update.dto';
 
 @Controller('user')
 export class UserController {
-
-    constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) {}
 
   @Get('/:id')
   getUserById(@Param('id', ParseIntPipe) id: number) {
