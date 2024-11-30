@@ -1,18 +1,22 @@
 /* eslint-disable prettier/prettier */
-import { IUser } from '../users/interface/IUser';
+
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { IEvent } from './interface/IEvent';
 
 @Entity()
-export class User implements IUser {
+export class Event implements IEvent {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  name: string;
+  title: string;
 
   @Column()
-  lastName: string;
+  description: string;
 
   @Column()
-  email: string;
+  date: string;
+
+  @Column()
+  location: string
 }

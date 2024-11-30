@@ -14,7 +14,7 @@ import { CommentService } from './comment.service';
 import { CommentDto } from './dto/comment.dto';
 import { UpdateCommentDto } from './dto/comment-update.dto';
 @Controller('comment')
-export class EventController {
+export class CommentController {
   constructor(private readonly commentService: CommentService) {}
 
   @Get('/:id')
@@ -39,11 +39,11 @@ export class EventController {
     @Param('id') id: number,
     @Body() updateComment: UpdateCommentDto,
   ) {
-    return this.commentService.updateComment(String(id), updateComment);
+    return this.commentService.updateComment((id), updateComment);
   }
 
   @Delete('/:id')
   deleteComments(@Param('id') id: number) {
-    return this.commentService.deleteComment(String(id));
+    return this.commentService.deleteComment((id));
   }
 }

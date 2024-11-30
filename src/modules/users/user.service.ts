@@ -1,19 +1,18 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   Injectable,
   NotFoundException,
   RequestTimeoutException,
   UnprocessableEntityException,
-} from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { UpdateUserDto } from './dto/user-update.dto';
-import { IUserCreate } from './interface/IUser';
-import { IUser } from './interface/IUser';
-import { v4 } from 'uuid';
-import { User } from './user.entity';
-import { Repository } from 'typeorm';
-import { Delete } from '@nestjs/common';
-
+} from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { UpdateUserDto } from "./dto/user-update.dto";
+import { IUserCreate } from "./interface/IUser";
+import { IUser } from "./interface/IUser";
+import { v4 } from "uuid";
+import { User } from "./user.entity";
+import { Repository } from "typeorm";
 @Injectable()
 export class UserService {
   private users: IUser[] = [];
@@ -21,6 +20,7 @@ export class UserService {
   constructor(
     @InjectRepository(User) private readonly userRepository: Repository<User>,
   ) {}
+  
   async getUsers() {
     let users: IUser[] | undefined;
     try {

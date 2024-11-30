@@ -15,7 +15,7 @@ import { CategoryDto } from './dto/category.dto';
 import { UpCategoryDto } from './dto/category-update.dto';
 
 @Controller('category')
-export class categoryController {
+export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
   @Get('/:id')

@@ -1,3 +1,5 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   Injectable,
   NotFoundException,
@@ -6,12 +8,16 @@ import {
 } from '@nestjs/common';
 import { IEvent, IEventCreate, IEventUpdate } from './interface/IEvent';
 import { v4 } from 'uuid';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Event } from './event.entity';
 
 @Injectable()
 export class EventService {
-  private events: IEvent[] = [];
+  
 
-  constructor() {}
+  constructor(
+    @InjectRepository(Event) private readonly eventRepository: Repository<Event>) {}
 
   async getEvents() {
     let events: IEvent[] | undefined;
@@ -19,7 +25,7 @@ export class EventService {
       events = await this.eventRepository.find();
     } catch (error) {
       throw new RequestTimeoutException('Error at querying the database', {
-        description: 'Error trying to get users',
+        description: 'Error trying to get Events',
       });
     }
 
@@ -62,7 +68,7 @@ export class EventService {
     }
   }
 
-  async updateEvent(id: String, eventUpdate: IEventUpdate) {
+  async updateEvent(id: number, eventUpdate: IEventUpdate) {
     let event: IEvent | undefined;
     try {
       event = await this.eventRepository.findOneBy({ id });
@@ -81,7 +87,7 @@ export class EventService {
     event.description = eventUpdate?.description ?? event.description;
     event.location = eventUpdate?.location ?? event.location;
     event.title = eventUpdate?.title ?? event.title;
-    event.organizer_id = eventUpdate?.organizer_id ?? event.organizer_id;
+   
 
     try {
       await this.eventRepository.save(event);
@@ -93,10 +99,16 @@ export class EventService {
     return true;
   }
 
-  async deleteEvent(id: string) {
-    this.events = this.events.filter((event) => {
-      if (event.id != Number(id)) return event;
-    });
-    return true;
+  async deleteEvent(id: number) {
+    try {
+      const event = await this.eventRepository.findOneBy({ id });
+      if (!event) {
+        throw new Error('No found it');
+      }
+      this.eventRepository.delete(event);
+      return true;
+    } catch (error) {
+      throw new Error('No eliminated');
+    }
   }
 }

@@ -1,12 +1,12 @@
+/* eslint-disable @typescript-eslint/no-empty-object-type */
 export interface IEvent {
   id: number;
   title: string;
   description: string;
   date: string;
   location: string;
-  organizer_id: string;
 }
 
-export interface IEventCreate extends Omit<IEvent, 'id,organizer_id'> {}
+export interface IEventCreate extends Omit<IEvent, "id"> {}
 
 export interface IEventUpdate extends Partial<IEventCreate> {}

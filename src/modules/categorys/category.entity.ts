@@ -1,8 +1,10 @@
-import { IUser } from './interface/IUser';
+/* eslint-disable prettier/prettier */
+import { ICategory } from "./interface/ICategory";
+
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class User implements IUser {
+export class Category implements ICategory {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -10,8 +12,6 @@ export class User implements IUser {
   name: string;
 
   @Column()
-  lastName: string;
+  description: string
 
-  @Column()
-  email: string;
 }

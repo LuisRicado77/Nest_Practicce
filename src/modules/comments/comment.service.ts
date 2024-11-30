@@ -1,3 +1,5 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   Injectable,
   NotFoundException,
@@ -6,12 +8,14 @@ import {
 } from '@nestjs/common';
 import { IComment, ICommentCreate, ICommentUpdate } from './interface/IComment';
 import { v4 } from 'uuid';
+import { Repository } from 'typeorm';
+import { Comment } from './comment.entity';
 
 @Injectable()
 export class CommentService {
   private comments: IComment[] = [];
 
-  constructor() {}
+  constructor(private readonly commentRepository: Repository<Comment>) {}
 
   async getComments() {
     let comments: IComment[] | undefined;
@@ -62,7 +66,7 @@ export class CommentService {
     }
   }
 
-  async updateComment(id: String, commentUpdate: ICommentUpdate) {
+  async updateComment(id: number, commentUpdate: ICommentUpdate) {
     let comment: IComment | undefined;
     try {
       comment = await this.commentRepository.findOneBy({ id });
@@ -78,8 +82,7 @@ export class CommentService {
     }
 
     comment.content = commentUpdate?.content ?? comment.content;
-    comment.event_id = commentUpdate?.event_id ?? comment.event_id;
-    comment.user_id = commentUpdate?.user_id ?? comment.user_id;
+   ;
 
     try {
       await this.commentRepository.save(comment);
@@ -91,7 +94,7 @@ export class CommentService {
     return true;
   }
 
-  async deleteComment(id: string) {
+  async deleteComment(id: number) {
     this.comments = this.comments.filter((comment) => {
       if (comment.id != Number(id)) return comment;
     });

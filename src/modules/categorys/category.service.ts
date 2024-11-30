@@ -1,21 +1,23 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable prettier/prettier */
 import {
   Injectable,
   NotFoundException,
   RequestTimeoutException,
   UnprocessableEntityException,
-} from '@nestjs/common';
+} from "@nestjs/common";
 import {
   ICategory,
   ICategoryCreate,
   ICategoryUpdate,
-} from './interface/ICategory';
+} from "./interface/ICategory";
 import { v4 } from 'uuid';
 
 @Injectable()
 export class CategoryService {
   private categorys: ICategory[] = [];
 
-  constructor() {}
+  constructor(private readonly categoryRepository) {}
 
   async getCategorys() {
     let categorys: ICategory[] | undefined;
@@ -65,7 +67,7 @@ export class CategoryService {
     }
   }
 
-  async updateCategory(id: String, categoryUpdate: ICategoryUpdate) {
+  async updateCategory(id: string, categoryUpdate: ICategoryUpdate) {
     let category: ICategory | undefined;
 
     try {

@@ -36,11 +36,11 @@ export class UserController {
 
   @Patch('/:id')
   updateUser(@Param('id') id: number, @Body() updateUser: UpdateUserDto) {
-    return this.userService.updateUser(String(id), updateUser);
+    return this.userService.updateUser((id), updateUser);
   }
 
   @Delete('/:id')
   deleteUser(@Param('id') id: number) {
-    return this.userService.deleteUser(String(id));
+    return this.userService.deleteUser((id));
   }
 }

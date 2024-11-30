@@ -36,11 +36,11 @@ export class EventController {
 
   @Patch('/:id')
   updateEvent(@Param('id') id: number, @Body() updateEvent: UpdateEventDto) {
-    return this.eventService.updateEvent(String(id), updateEvent);
+    return this.eventService.updateEvent((id), updateEvent);
   }
 
   @Delete('/:id')
   deleteEvent(@Param('id') id: number) {
-    return this.eventService.deleteEvent(String(id));
+    return this.eventService.deleteEvent((id));
   }
 }

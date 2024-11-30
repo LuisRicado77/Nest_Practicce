@@ -1,18 +1,14 @@
 /* eslint-disable prettier/prettier */
-import { IUser } from './interface/IUser';
+
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { IComment } from './interface/IComment';
 
 @Entity()
-export class User implements IUser {
+export class Comment implements IComment {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  name: string;
-
-  @Column()
-  lastName: string;
-
-  @Column()
-  email: string;
+  content: string;
+;
 }
